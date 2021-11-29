@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-size: 1rem;
+  height: 100vh;
+}
+
+.news-container {
+  width: 80%;
+  margin: auto;
+}
+.news-container h1 {
+  text-align: center;
+  margin-top: 2rem;
+}
+.news-container form {
+  width: 50%;
+  margin: 3rem 0rem;
+}
+.news-container form input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0rem;
+  outline: none;
+}
+#send-news-btn {
+  background-color: grey;
+  color: #fff;
+  border: none;
+  width: 50%;
+}
+#author-list {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.author-card {
+  border: 1px solid grey;
+  padding: 1rem;
+  border-radius: 8px;
+  /* width: 33%; */
+}
+.author-card p {
+  margin: 0.5rem 0rem;
+}
+.author-card img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+.author-card button {
+  cursor: pointer;
+  margin-top: 1rem;
+  padding: 5px;
+  background-color: grey;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+}
+.author-card .see_more_btn {
+  margin-right: 0.5rem;
+}
