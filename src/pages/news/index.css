@@ -1,0 +1,28 @@
+.news-images {
+  display: flex;
+}
+.news-images img {
+  object-fit: contain;
+  width: 50%;
+  margin: 1rem;
+}
+#news-comments {
+  /* background-color: red; */
+}
+#news-comments form {
+  /* background-color: blue; */
+  width: 50%;
+  margin: 3rem 0rem;
+}
+#news-comments form input {
+  width: 80%;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0rem;
+  outline: none;
+}
+#news-comments form .post-comment-btn {
+  background-color: grey;
+  color: #fff;
+  border: none;
+  width: 20%;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Credo</title>
+    <link rel="stylesheet" href="./src/css/index.css" />
+  </head>
+  <body>
+    <div class="news-container">
+      <h1>Credo Assessment By Fatimah Davies</h1>
+      <form id="form-add-news" method="POST" action="" enctype="multipart/form-data">
+        <h3>Add News</h3>
+        <input type="text" name="author" id="author" placeholder="author's name" /><br />
+        <input type="text" name="title" id="title" placeholder="author's title" /><br />
+        <input type="text" name="url" id="url" placeholder="author's url" /><br />
+        <input type="file" name="avatar" id="avatar" placeholder="author's avatar" /><br />
+        <input type="submit" value="send" id="send-news-btn" />
+      </form>
+      <div id="author-list"></div>
+    </div>
+
+    <script type="module" src="./src/js/index.js"></script>
+  </body>
+</html>
