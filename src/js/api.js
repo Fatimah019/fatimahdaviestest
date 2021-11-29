@@ -7,13 +7,10 @@ export const apiCall = {
       .then(getData)
       .catch((err) => console.log(err));
   },
-  postRequest(urlExt, requestMethod, postData, message) {
+  postRequest(urlExt, requestMethod, postData = {}, message) {
     fetch(`${baseApiUrl}/${urlExt}`, {
       method: requestMethod,
-      body: JSON.stringify(Object.fromEntries(postData)),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: JSON.stringify(postData),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -31,7 +28,14 @@ export const apiCall = {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then((data) => (data ? alert(message) : alert("An error occurred while deleting this")))
+      .then(async (data) => {
+        if (data) {
+          await alert(message);
+          window.location.reload(true);
+        } else {
+          alert("An error occurred while deleting this");
+        }
+      })
       .catch((err) => console.log(err));
   },
 };

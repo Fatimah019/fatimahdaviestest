@@ -92,20 +92,15 @@ const getNewsCommentsById = async () => {
         comment_text.disabled = false;
         update_comment_btn.style.display = "block";
         edit_comment_btn.style.display = "none";
-
-        // update_btn.addEventListener("click", () => console.log("hey"));
-        // editComment(JSON.parse(localStorage.getItem("comment_to_edit")), "comment edited successfully");
       });
 
       update_comment_btn.addEventListener("click", async () => {
-        // editComment();
-        await editComment("comment edited successfully");
+        let id = localStorage.getItem("comment_to_edit");
+        await editComment(id, "comment edited successfully");
         update_comment_btn.style.display = "none";
         edit_comment_btn.style.display = "block";
         comment_text.disabled = true;
       });
-
-      // edit comment
 
       // delete a comment by its id
       delete_comment_btn.addEventListener("submit", async (res) => {
@@ -120,19 +115,7 @@ const getNewsCommentsById = async () => {
   });
 };
 
-// delete a comment by its id
-const deleteComment = async (id, message) => {
-  await apiCall.deleteRequest(`news/${news_id}/comments/${id}`, message);
-};
-
 const postComment = document.querySelector("#form-add-comments");
-// delete a comment by its id
-const editComment = async (id, message) => {
-  const comment = document.querySelector(".comment_form");
-  const formData = new FormData(comment).entries();
-
-  await apiCall.postRequest(`news/${news_id}/comments/${75}`, "PUT", formData, message);
-};
 
 // post a comment
 postComment.addEventListener("submit", async (e) => {
@@ -140,6 +123,19 @@ postComment.addEventListener("submit", async (e) => {
   const formData = new FormData(postComment).entries();
   await apiCall.postRequest(`news/${news_id}/comments`, "POST", formData, "Comment Added Successfully");
 });
+
+// edit a comment by its id
+const editComment = async (id, message) => {
+  const comment = document.querySelector(".comment_form");
+  const formData = new FormData(comment).entries();
+
+  await apiCall.postRequest(`news/${news_id}/comments/${id}`, "PUT", formData, message);
+};
+
+// delete a comment by its id
+const deleteComment = async (id, message) => {
+  await apiCall.deleteRequest(`news/${news_id}/comments/${id}`, message);
+};
 
 getNewsById();
 getNewsImages();
