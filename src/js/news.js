@@ -103,7 +103,7 @@ const getNewsCommentsById = async () => {
       });
 
       // delete a comment by its id
-      delete_comment_btn.addEventListener("submit", async (res) => {
+      delete_comment_btn.addEventListener("click", async (res) => {
         await newsStorage.setItemToLocalStorage("comment_to_del", data.id);
         if (confirm(`Are you sure you want to delete it ?`)) {
           deleteComment(JSON.parse(localStorage.getItem("comment_to_del")), "comment deleted successfully");
@@ -116,20 +116,22 @@ const getNewsCommentsById = async () => {
 };
 
 const postComment = document.querySelector("#form-add-comments");
-
+const comment_input = document.querySelector("#comment");
 // post a comment
 postComment.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const formData = new FormData(postComment).entries();
-  await apiCall.postRequest(`news/${news_id}/comments`, "POST", formData, "Comment Added Successfully");
+
+  await apiCall.postRequest(
+    `news/${news_id}/comments`,
+    "POST",
+    { comment: comment_input.value },
+    "Comment Added Successfully"
+  );
 });
 
 // edit a comment by its id
 const editComment = async (id, message) => {
-  const comment = document.querySelector(".comment_form");
-  const formData = new FormData(comment).entries();
-
-  await apiCall.postRequest(`news/${news_id}/comments/${id}`, "PUT", formData, message);
+  await apiCall.postRequest(`news/${news_id}/comments/${id}`, "PUT", { comment: comment_input.value }, message);
 };
 
 // delete a comment by its id
