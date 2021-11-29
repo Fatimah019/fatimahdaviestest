@@ -12,11 +12,8 @@ const getAllAuthors = async (page_number, items) => {
       author_name.textContent = data.author;
 
       const author_image = document.createElement("img");
-      const isAuthorImg =
-        !data.avatar || data.avatar === undefined || data.avatar === ""
-          ? "/src/assets/images/defaulltimage.jpg"
-          : data.avatar;
-      author_image.src = isAuthorImg;
+      const isAuthorImg = data.avatar;
+      author_image.src = isAuthorImg || "/src/assets/images/defaulltimage.jpg";
 
       const author_title = document.createElement("p");
       author_title.textContent = data.title;
@@ -61,19 +58,29 @@ const post_news_btn = document.querySelector("#send-news-btn");
 postNews.addEventListener("submit", async (e) => {
   e.preventDefault();
   // post_news_btn.textContent = "sending";
-  const formData = new FormData(postNews).entries();
-  // const author = document.querySelector("#author");
-  // const title = document.querySelector("#title");
-  // const avatar = document.querySelector("#avatar");
-  // const news_url = document.querySelector("#url");
+  // const formData = new FormData(postNews).entries();
+  const author = document.querySelector("#author");
+  const title = document.querySelector("#title");
+  const avatar = document.querySelector("#avatar");
+  const news_url = document.querySelector("#url");
+  let err_display = document.querySelector("#error-display");
 
-  // const formData = new FormData();
-  // formData.append("author", author.value);
-  // formData.append("title", title.value);
-  // formData.append("avatar", avatar.files[0]);
-  // formData.append("url", news_url.value);
+  const formData = new FormData();
+  formData.append("author", author.value);
+  formData.append("title", title.value);
+  formData.append("avatar", avatar.files[0]);
+  formData.append("url", news_url.value);
 
-  await apiCall.postRequest("news", requestMethod, formData, "News Added Successfully");
+  post_news_btn.textContent = "sending";
+  // check for empty values
+  if (author.value === "" || title.value === "" || news_url.value === "") {
+    err_display.textContent = "All Fields Must Be Filled And Must Be In The Right Format";
+    setInterval(() => {
+      err_display.textContent = "";
+    }, 3000);
+  } else {
+    await apiCall.postRequest("news", "POST", formData, "News Added Successfully");
+  }
 });
 
 // delete a news by its id
