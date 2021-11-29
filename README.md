@@ -1,9 +1,9 @@
-# fatimahdaviestest  (https://fatimahdaviestest.vercel.app/)
+# Fatimah Davies  
 
-# This was built in HTNL, CSS, and JavaScript
+### (https://fatimahdaviestest.vercel.app/)
+### This was built in HTNL, CSS, and JavaScript
 
+### one thing to take note of is that It can only be run using a live server
 
-# one thing to take note of is that It can only be run using a live server
-
-# To get when the global api request function is, Go to src folder -- js -- api.js
+### To get when the global api request function is, Go to src folder -- js -- api.js
 

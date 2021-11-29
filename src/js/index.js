@@ -52,26 +52,30 @@ const getAllAuthors = async (page_number, items) => {
 };
 getAllAuthors(1, 100);
 
+/**
+ * @params {string} [method=post]
+ * @params {string} author name, title and url
+ * @params {string}
+ */
+
 // post a news
 const postNews = document.querySelector("#form-add-news");
-const post_news_btn = document.querySelector("#send-news-btn");
 postNews.addEventListener("submit", async (e) => {
   e.preventDefault();
-  // post_news_btn.textContent = "sending";
-  // const formData = new FormData(postNews).entries();
+
   const author = document.querySelector("#author");
   const title = document.querySelector("#title");
   const avatar = document.querySelector("#avatar");
   const news_url = document.querySelector("#url");
   let err_display = document.querySelector("#error-display");
 
-  const formData = new FormData();
-  formData.append("author", author.value);
-  formData.append("title", title.value);
-  formData.append("avatar", avatar.files[0]);
-  formData.append("url", news_url.value);
+  const formData = {
+    author: author.value,
+    title: title.value,
+    avatar: avatar.files[0],
+    url: news_url.value,
+  };
 
-  post_news_btn.textContent = "sending";
   // check for empty values
   if (author.value === "" || title.value === "" || news_url.value === "") {
     err_display.textContent = "All Fields Must Be Filled And Must Be In The Right Format";
